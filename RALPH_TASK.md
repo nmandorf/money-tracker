@@ -25,10 +25,10 @@ Execute milestones in order using the OpenSpec change:
 - [x] CI workflow enforces lint/typecheck/test + coverage
 
 ### Milestone 02: Domain
-- [ ] Pure TS domain modules implemented
-- [ ] Deterministic equal split + percent split
-- [ ] Balances + settlements implemented
-- [ ] Domain coverage >= 90%
+- [x] Pure TS domain modules implemented
+- [x] Deterministic equal split + percent split
+- [x] Balances + settlements implemented
+- [x] Domain coverage >= 90%
 
 ### Milestone 03: Persistence
 - [ ] SQLite schema + migrations implemented

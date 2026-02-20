@@ -5,11 +5,11 @@
 - [x] 1.4 Add CI workflow for lint/typecheck/test with coverage output.
 
 ## 2. Domain Core (02)
-- [ ] 2.1 Implement money utilities in pure TS (integer cents only).
-- [ ] 2.2 Implement deterministic equal split with remainder handling.
-- [ ] 2.3 Implement strict percent split validation and allocations.
-- [ ] 2.4 Implement balance and settlement pure functions.
-- [ ] 2.5 Add domain unit tests with >=90% coverage for domain modules.
+- [x] 2.1 Implement money utilities in pure TS (integer cents only).
+- [x] 2.2 Implement deterministic equal split with remainder handling.
+- [x] 2.3 Implement strict percent split validation and allocations.
+- [x] 2.4 Implement balance and settlement pure functions.
+- [x] 2.5 Add domain unit tests with >=90% coverage for domain modules.
 
 ## 3. Persistence (03)
 - [ ] 3.1 Add expo-sqlite initialization and migration versioning.
