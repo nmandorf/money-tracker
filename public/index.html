@@ -4,19 +4,54 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Money Tracker</title>
+    <script>
+      (() => {
+        const key = 'theme-mode';
+        const valid = new Set(['light', 'dark', 'system']);
+        let mode = 'system';
+        try {
+          const stored = localStorage.getItem(key);
+          if (valid.has(stored)) {
+            mode = stored;
+          }
+        } catch {}
+
+        const media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+        const prefersDark = media ? media.matches : false;
+        const resolved = mode === 'system' ? (prefersDark ? 'dark' : 'light') : mode;
+        document.documentElement.dataset.themeMode = mode;
+        document.documentElement.dataset.theme = resolved;
+      })();
+    </script>
     <style>
       :root {
         --bg: #fffaf2;
+        --bg-gradient-top: #fff4d9;
         --card: #ffffff;
         --ink: #1b1d1f;
         --muted: #5c6570;
         --accent: #0f766e;
         --border: #d8e0e8;
+        --surface-soft: #f6f8fb;
+        --surface-inset: #eef2f6;
+        --button-text: #ffffff;
+      }
+      :root[data-theme="dark"] {
+        --bg: #0f1319;
+        --bg-gradient-top: #1a2230;
+        --card: #161d26;
+        --ink: #e9eef5;
+        --muted: #a7b4c7;
+        --accent: #38b2ac;
+        --border: #2d3a4a;
+        --surface-soft: #1d2632;
+        --surface-inset: #111823;
+        --button-text: #061014;
       }
       body {
         margin: 0;
         font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", sans-serif;
-        background: radial-gradient(circle at 20% 0%, #fff4d9 0%, var(--bg) 50%);
+        background: radial-gradient(circle at 20% 0%, var(--bg-gradient-top) 0%, var(--bg) 50%);
         color: var(--ink);
       }
       main {
@@ -31,48 +66,89 @@
         padding: 16px;
         margin-bottom: 16px;
       }
+      .row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
       input, button {
         font: inherit;
         padding: 10px 12px;
         border-radius: 10px;
         border: 1px solid var(--border);
+        background: var(--surface-soft);
+        color: var(--ink);
       }
       button {
         background: var(--accent);
-        color: white;
+        color: var(--button-text);
         border: none;
         cursor: pointer;
+      }
+      select {
+        font: inherit;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--surface-soft);
+        color: var(--ink);
       }
       .muted { color: var(--muted); }
       pre {
         overflow: auto;
-        background: #f6f8fb;
+        background: var(--surface-inset);
+        border: 1px solid var(--border);
         border-radius: 10px;
         padding: 10px;
+      }
+      label {
+        color: var(--muted);
+        font-size: 0.95rem;
       }
     </style>
   </head>
   <body>
     <main>
-      <h1>Group Expense Tracker</h1>
-      <p class="muted">Create a group, add members, and inspect balances via API-backed actions.</p>
+      <section class="card">
+        <div class="row">
+          <div>
+            <h1>Group Expense Tracker</h1>
+            <p class="muted">Create a group, add members, and inspect balances via API-backed actions.</p>
+          </div>
+          <div style="margin-left: auto;">
+            <label for="themeMode">Theme</label>
+            <select id="themeMode">
+              <option value="system">System</option>
+              <option value="light">Light</option>
+              <option value="dark">Dark</option>
+            </select>
+          </div>
+        </div>
+      </section>
 
       <section class="card">
         <h2>1) Create Group</h2>
-        <input id="groupName" placeholder="Weekend Trip" />
-        <button id="createGroup">Create</button>
+        <div class="row">
+          <input id="groupName" placeholder="Weekend Trip" />
+          <button id="createGroup">Create</button>
+        </div>
       </section>
 
       <section class="card">
         <h2>2) Add Member</h2>
-        <input id="memberName" placeholder="Alex" />
-        <button id="addMember">Add</button>
+        <div class="row">
+          <input id="memberName" placeholder="Alex" />
+          <button id="addMember">Add</button>
+        </div>
       </section>
 
       <section class="card">
         <h2>3) Add Manual Expense</h2>
-        <input id="amount" type="number" step="0.01" placeholder="42.75" />
-        <button id="addExpense">Add Expense</button>
+        <div class="row">
+          <input id="amount" type="number" step="0.01" placeholder="42.75" />
+          <button id="addExpense">Add Expense</button>
+        </div>
       </section>
 
       <section class="card">
@@ -83,6 +159,47 @@
     </main>
 
     <script>
+      const THEME_KEY = 'theme-mode';
+      const themeSelect = document.getElementById('themeMode');
+      let themeMode = document.documentElement.dataset.themeMode || 'system';
+      const media = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : null;
+
+      function resolveTheme(mode) {
+        if (mode === 'light' || mode === 'dark') {
+          return mode;
+        }
+        return media && media.matches ? 'dark' : 'light';
+      }
+
+      function safeSetThemeMode(mode) {
+        try {
+          localStorage.setItem(THEME_KEY, mode);
+        } catch {}
+      }
+
+      function applyTheme(mode) {
+        const resolved = resolveTheme(mode);
+        document.documentElement.dataset.themeMode = mode;
+        document.documentElement.dataset.theme = resolved;
+        themeSelect.value = mode;
+      }
+
+      themeSelect.addEventListener('change', (event) => {
+        themeMode = event.target.value;
+        safeSetThemeMode(themeMode);
+        applyTheme(themeMode);
+      });
+
+      if (media) {
+        media.addEventListener('change', () => {
+          if (themeMode === 'system') {
+            applyTheme('system');
+          }
+        });
+      }
+
+      applyTheme(themeMode);
+
       const state = { group: null, members: [] };
       const output = document.getElementById('output');
       const show = (obj) => output.textContent = JSON.stringify(obj, null, 2);

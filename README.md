@@ -1,35 +1,17 @@
 # Money Tracker
 
-A lightweight group expense tracker API with:
+This repository now includes a React Native (Expo) TypeScript mobile app under `mobile/`.
 
-- Group/member management with no hard member cap
-- Manual and receipt-draft expense capture
-- Deterministic split math in minor currency units
-- Balance summaries and bilateral settlement suggestions
-- Optimistic concurrency checks for mutable expense updates
+## Milestone 01 Local Commands
 
-## Run
+- `npm start` -> launch Expo app
+- `npm run lint` -> run ESLint
+- `npm run typecheck` -> run TypeScript checks (strict + noImplicitAny)
+- `npm test` -> run Jest with coverage
+- `npm run format` -> auto-format with Prettier
 
-```bash
-npm start
-```
+## Direct Mobile Commands
 
-## Test
-
-```bash
-npm test
-```
-
-## Key Endpoints
-
-- `POST /groups`
-- `PATCH /groups/:groupId`
-- `POST /groups/:groupId/members`
-- `DELETE /groups/:groupId/members/:memberId`
-- `POST /groups/:groupId/expenses/manual`
-- `POST /groups/:groupId/expenses/receipt`
-- `PATCH /groups/:groupId/expenses/:expenseId/finalize`
-- `PATCH /groups/:groupId/expenses/:expenseId`
-- `DELETE /groups/:groupId/expenses/:expenseId`
-- `GET /groups/:groupId/balances`
-- `GET /health`
+- `npm --prefix mobile run ios`
+- `npm --prefix mobile run android`
+- `npm --prefix mobile run web`
