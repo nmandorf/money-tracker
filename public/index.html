@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Money Tracker</title>
+    <style>
+      :root {
+        --bg: #fffaf2;
+        --card: #ffffff;
+        --ink: #1b1d1f;
+        --muted: #5c6570;
+        --accent: #0f766e;
+        --border: #d8e0e8;
+      }
+      body {
+        margin: 0;
+        font-family: ui-rounded, "SF Pro Rounded", "Avenir Next", sans-serif;
+        background: radial-gradient(circle at 20% 0%, #fff4d9 0%, var(--bg) 50%);
+        color: var(--ink);
+      }
+      main {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 16px;
+        margin-bottom: 16px;
+      }
+      input, button {
+        font: inherit;
+        padding: 10px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+      }
+      button {
+        background: var(--accent);
+        color: white;
+        border: none;
+        cursor: pointer;
+      }
+      .muted { color: var(--muted); }
+      pre {
+        overflow: auto;
+        background: #f6f8fb;
+        border-radius: 10px;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Group Expense Tracker</h1>
+      <p class="muted">Create a group, add members, and inspect balances via API-backed actions.</p>
+
+      <section class="card">
+        <h2>1) Create Group</h2>
+        <input id="groupName" placeholder="Weekend Trip" />
+        <button id="createGroup">Create</button>
+      </section>
+
+      <section class="card">
+        <h2>2) Add Member</h2>
+        <input id="memberName" placeholder="Alex" />
+        <button id="addMember">Add</button>
+      </section>
+
+      <section class="card">
+        <h2>3) Add Manual Expense</h2>
+        <input id="amount" type="number" step="0.01" placeholder="42.75" />
+        <button id="addExpense">Add Expense</button>
+      </section>
+
+      <section class="card">
+        <h2>4) Balances</h2>
+        <button id="refreshBalances">Refresh</button>
+        <pre id="output"></pre>
+      </section>
+    </main>
+
+    <script>
+      const state = { group: null, members: [] };
+      const output = document.getElementById('output');
+      const show = (obj) => output.textContent = JSON.stringify(obj, null, 2);
+
+      document.getElementById('createGroup').onclick = async () => {
+        const name = document.getElementById('groupName').value;
+        const res = await fetch('/groups', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name })
+        });
+        const data = await res.json();
+        state.group = data;
+        state.members = data.members || [];
+        show(data);
+      };
+
+      document.getElementById('addMember').onclick = async () => {
+        if (!state.group) return show({ error: 'Create group first' });
+        const name = document.getElementById('memberName').value;
+        const res = await fetch(`/groups/${state.group.id}/members`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name })
+        });
+        const data = await res.json();
+        state.members.push(data);
+        show(state.members);
+      };
+
+      document.getElementById('addExpense').onclick = async () => {
+        if (!state.group || state.members.length === 0) return show({ error: 'Create group and members first' });
+        const amount = Number(document.getElementById('amount').value);
+        const payer = state.members[0];
+        const res = await fetch(`/groups/${state.group.id}/expenses/manual`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            amount,
+            payerMemberId: payer.id,
+            participantIds: state.members.map((m) => m.id),
+            note: 'UI quick expense'
+          })
+        });
+        show(await res.json());
+      };
+
+      document.getElementById('refreshBalances').onclick = async () => {
+        if (!state.group) return show({ error: 'Create group first' });
+        const res = await fetch(`/groups/${state.group.id}/balances`);
+        show(await res.json());
+      };
+    </script>
+  </body>
+</html>
