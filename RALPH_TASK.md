@@ -19,10 +19,10 @@ Execute milestones in order using the OpenSpec change:
 ## Success Criteria
 
 ### Milestone 01: Foundation
-- [ ] Expo React Native + TypeScript scaffolded
-- [ ] Strict TypeScript + noImplicitAny
-- [ ] lint/typecheck/test scripts pass
-- [ ] CI workflow enforces lint/typecheck/test + coverage
+- [x] Expo React Native + TypeScript scaffolded
+- [x] Strict TypeScript + noImplicitAny
+- [x] lint/typecheck/test scripts pass
+- [x] CI workflow enforces lint/typecheck/test + coverage
 
 ### Milestone 02: Domain
 - [ ] Pure TS domain modules implemented

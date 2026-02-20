@@ -1,8 +1,8 @@
 ## 1. Foundation (01)
-- [ ] 1.1 Scaffold Expo + TypeScript app with strict tsconfig and noImplicitAny.
-- [ ] 1.2 Configure ESLint + Prettier with non-conflicting rules.
-- [ ] 1.3 Add Jest + RN testing libraries and baseline passing tests.
-- [ ] 1.4 Add CI workflow for lint/typecheck/test with coverage output.
+- [x] 1.1 Scaffold Expo + TypeScript app with strict tsconfig and noImplicitAny.
+- [x] 1.2 Configure ESLint + Prettier with non-conflicting rules.
+- [x] 1.3 Add Jest + RN testing libraries and baseline passing tests.
+- [x] 1.4 Add CI workflow for lint/typecheck/test with coverage output.
 
 ## 2. Domain Core (02)
 - [ ] 2.1 Implement money utilities in pure TS (integer cents only).

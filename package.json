@@ -4,9 +4,14 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node src/server.js",
-    "start": "node src/server.js",
-    "test": "node --test",
+    "start": "npm --prefix mobile run start",
+    "lint": "npm --prefix mobile run lint",
+    "typecheck": "npm --prefix mobile run typecheck",
+    "test": "npm --prefix mobile run test",
+    "format": "npm --prefix mobile run format",
+    "format:check": "npm --prefix mobile run format:check",
+    "dev:api": "node src/server.js",
+    "test:api": "node --test",
     "test:perf": "node --test tests/perf.test.js"
   },
   "engines": {
