@@ -1,0 +1,58 @@
+# Ralph Task Cache
+# Auto-generated from RALPH_TASK.md
+# DO NOT EDIT - regenerated on task file change
+
+source_file: RALPH_TASK.md
+source_mtime: 1771548450
+generated_at: 2026-02-20T00:56:01Z
+
+tasks:
+  - id: "line_19"
+    line_number: 19
+    status: pending
+    parallel_group: 999999
+    description: `npx ts-node todo.ts add \"Buy milk\"` adds a todo and confirms
+    indent_level: 0
+    raw_marker: 1.
+  - id: "line_20"
+    line_number: 20
+    status: pending
+    parallel_group: 999999
+    description: `npx ts-node todo.ts list` shows all todos with IDs and status
+    indent_level: 0
+    raw_marker: 2.
+  - id: "line_21"
+    line_number: 21
+    status: pending
+    parallel_group: 999999
+    description: `npx ts-node todo.ts done 1` marks todo 1 as complete
+    indent_level: 0
+    raw_marker: 3.
+  - id: "line_22"
+    line_number: 22
+    status: pending
+    parallel_group: 999999
+    description: Todos survive script restart (JSON persistence)
+    indent_level: 0
+    raw_marker: 4.
+  - id: "line_23"
+    line_number: 23
+    status: pending
+    parallel_group: 999999
+    description: Invalid commands show helpful usage message
+    indent_level: 0
+    raw_marker: 5.
+  - id: "line_24"
+    line_number: 24
+    status: pending
+    parallel_group: 999999
+    description: Code has proper TypeScript types (no `any`)
+    indent_level: 0
+    raw_marker: 6.
+  - id: "line_33"
+    line_number: 33
+    status: pending
+    parallel_group: 999999
+    description: Buy milk
+    indent_level: 0
+    raw_marker: 1.

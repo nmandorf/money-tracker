@@ -1,48 +1,71 @@
 ---
-task: Build a CLI todo app in TypeScript
-test_command: "npx ts-node todo.ts list"
+task: Deliver the full 9-milestone mobile MVP using OpenSpec change deliver-mobile-mvp-milestones
+test_command: "npm test"
 ---
 
-# Task: CLI Todo App (TypeScript)
+# Task: Complete Mobile MVP Milestones (01-09)
 
-Build a simple command-line todo application in TypeScript.
+Execute milestones in order using the OpenSpec change:
+`openspec/changes/deliver-mobile-mvp-milestones/`
 
-## Requirements
+## Hard Constraints
 
-1. Single file: `todo.ts`
-2. Uses `todos.json` for persistence
-3. Three commands: add, list, done
-4. TypeScript with proper types
+1. Follow milestone order strictly (01 -> 09).
+2. Do not skip failing tests or CI gates.
+3. Keep money logic integer-cents only and deterministic.
+4. Commit after meaningful completed increments.
+5. Update this file as criteria are completed.
 
 ## Success Criteria
 
-1. [ ] `npx ts-node todo.ts add "Buy milk"` adds a todo and confirms
-2. [ ] `npx ts-node todo.ts list` shows all todos with IDs and status
-3. [ ] `npx ts-node todo.ts done 1` marks todo 1 as complete
-4. [ ] Todos survive script restart (JSON persistence)
-5. [ ] Invalid commands show helpful usage message
-6. [ ] Code has proper TypeScript types (no `any`)
+### Milestone 01: Foundation
+- [ ] Expo React Native + TypeScript scaffolded
+- [ ] Strict TypeScript + noImplicitAny
+- [ ] lint/typecheck/test scripts pass
+- [ ] CI workflow enforces lint/typecheck/test + coverage
 
-## Example Output
+### Milestone 02: Domain
+- [ ] Pure TS domain modules implemented
+- [ ] Deterministic equal split + percent split
+- [ ] Balances + settlements implemented
+- [ ] Domain coverage >= 90%
 
-```
-$ npx ts-node todo.ts add "Buy milk"
-✓ Added: "Buy milk" (id: 1)
+### Milestone 03: Persistence
+- [ ] SQLite schema + migrations implemented
+- [ ] Typed repository API implemented
+- [ ] Integration tests for repository pass
 
-$ npx ts-node todo.ts list
-1. [ ] Buy milk
+### Milestone 04: Groups UI
+- [ ] Group/member screens + navigation implemented
+- [ ] Duplicate member names rejected per group
+- [ ] E2E persistence flow exists
 
-$ npx ts-node todo.ts done 1
-✓ Completed: "Buy milk"
-```
+### Milestone 05: Manual Expenses
+- [ ] Manual expense form + validation implemented
+- [ ] Expenses persist and balances update
+- [ ] E2E manual expense scenario passes
 
----
+### Milestone 06: Percent Split
+- [ ] Percent split UI + exact 100.00% gating
+- [ ] Percent allocations persist and compute correctly
+- [ ] E2E percent scenario passes
 
-## Ralph Instructions
+### Milestone 07: Receipts
+- [ ] Receipt picker/camera + storage implemented
+- [ ] OCR adapter + parser heuristics implemented
+- [ ] Prefill remains editable; manual fallback always available
 
-1. Work on the next incomplete criterion (marked [ ])
-2. Check off completed criteria (change [ ] to [x])
-3. Run tests after changes
-4. Commit your changes frequently
-5. When ALL criteria are [x], output: `<ralph>COMPLETE</ralph>`
-6. If stuck on the same issue 3+ times, output: `<ralph>GUTTER</ralph>`
+### Milestone 08: Settle Up
+- [ ] Settle-up screen implemented from computed settlements
+- [ ] Empty/all-settled states implemented
+- [ ] Deterministic transfer tests pass
+
+### Milestone 09: Hardening & Release
+- [ ] Accessibility pass complete
+- [ ] Error/loading states across async flows
+- [ ] Performance checks for large lists
+- [ ] Coverage and CI release gates enforced
+
+## Completion Rule
+- When all criteria are [x], output: `<ralph>COMPLETE</ralph>`
+- If blocked after repeated retries, output: `<ralph>GUTTER</ralph>` with reason
