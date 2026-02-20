@@ -20,6 +20,12 @@ npm start
 npm test
 ```
 
+## UI Notes
+
+- Open `http://localhost:3000/app` to use the demo UI.
+- Theme selector supports `System`, `Light`, and `Dark` modes.
+- Explicit theme choice is saved in browser storage and restored on reload.
+
 ## Key Endpoints
 
 - `POST /groups`
