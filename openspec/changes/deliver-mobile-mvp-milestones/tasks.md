@@ -12,16 +12,16 @@
 - [x] 2.5 Add domain unit tests with >=90% coverage for domain modules.
 
 ## 3. Persistence (03)
-- [ ] 3.1 Add expo-sqlite initialization and migration versioning.
-- [ ] 3.2 Implement typed repository methods and typed validation errors.
-- [ ] 3.3 Add integration tests for CRUD and relation constraints.
-- [ ] 3.4 Add dev-only DB reset utility.
+- [x] 3.1 Add expo-sqlite initialization and migration versioning.
+- [x] 3.2 Implement typed repository methods and typed validation errors.
+- [x] 3.3 Add integration tests for CRUD and relation constraints.
+- [x] 3.4 Add dev-only DB reset utility.
 
 ## 4. Groups & Members UI (04)
-- [ ] 4.1 Add navigation stack and group/member screens.
-- [ ] 4.2 Implement create group/member forms with validation and duplicate-name rejection.
-- [ ] 4.3 Wire screens to repository and add component tests.
-- [ ] 4.4 Add E2E persistence flow test.
+- [x] 4.1 Add navigation stack and group/member screens.
+- [x] 4.2 Implement create group/member forms with validation and duplicate-name rejection.
+- [x] 4.3 Wire screens to repository and add component tests.
+- [x] 4.4 Add E2E persistence flow test.
 
 ## 5. Manual Expenses (05)
 - [ ] 5.1 Add expense list and balance summary sections to group detail.

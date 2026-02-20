@@ -31,14 +31,14 @@ Execute milestones in order using the OpenSpec change:
 - [x] Domain coverage >= 90%
 
 ### Milestone 03: Persistence
-- [ ] SQLite schema + migrations implemented
-- [ ] Typed repository API implemented
-- [ ] Integration tests for repository pass
+- [x] SQLite schema + migrations implemented
+- [x] Typed repository API implemented
+- [x] Integration tests for repository pass
 
 ### Milestone 04: Groups UI
-- [ ] Group/member screens + navigation implemented
-- [ ] Duplicate member names rejected per group
-- [ ] E2E persistence flow exists
+- [x] Group/member screens + navigation implemented
+- [x] Duplicate member names rejected per group
+- [x] E2E persistence flow exists
 
 ### Milestone 05: Manual Expenses
 - [ ] Manual expense form + validation implemented
