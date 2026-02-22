@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
 import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
 
+import { ErrorBoundary } from './src/app/ErrorBoundary';
 import { GroupsNavigator } from './src/features/groups/GroupsNavigator';
 import { createRepository, openAppDatabase, type Repository } from './src/persistence';
 
@@ -42,10 +43,12 @@ export default function App({ repository }: AppProps) {
   }
 
   return (
-    <NavigationContainer>
-      <GroupsNavigator repository={runtimeRepository} />
-      <StatusBar style="auto" />
-    </NavigationContainer>
+    <ErrorBoundary>
+      <NavigationContainer>
+        <GroupsNavigator repository={runtimeRepository} />
+        <StatusBar style="auto" />
+      </NavigationContainer>
+    </ErrorBoundary>
   );
 }
 

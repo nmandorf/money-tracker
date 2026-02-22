@@ -9,7 +9,7 @@
     "web": "expo start --web",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
-    "test": "jest --coverage",
+    "test": "NODE_OPTIONS=--require=./test.node25.globals.cjs jest --coverage --runInBand",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },
@@ -40,6 +40,7 @@
   },
   "jest": {
     "preset": "jest-expo",
+    "testEnvironment": "node",
     "setupFilesAfterEnv": [
       "<rootDir>/jest.setup.ts"
     ],
@@ -51,7 +52,15 @@
       "!**/node_modules/**",
       "!**/babel.config.js",
       "!**/jest.config.js"
-    ]
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 70,
+        "lines": 70,
+        "statements": 70
+      }
+    }
   },
   "private": true
 }
