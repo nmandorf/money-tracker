@@ -39,7 +39,7 @@ export const CreateGroupScreen = ({ navigation, repository }: Props) => {
         value={name}
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
-      <Pressable accessibilityRole="button" onPress={onSave} style={styles.primaryButton}>
+      <Pressable accessibilityLabel="Save Group" accessibilityRole="button" onPress={onSave} style={styles.primaryButton}>
         <Text style={styles.primaryButtonText}>Save Group</Text>
       </Pressable>
     </View>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     padding: 12,
     marginBottom: 8
   },
-  primaryButton: { backgroundColor: '#0b66c3', borderRadius: 8, padding: 12 },
+  primaryButton: { backgroundColor: '#0b66c3', borderRadius: 8, minHeight: 44, justifyContent: 'center', padding: 12 },
   primaryButtonText: { color: '#ffffff', fontWeight: '700', textAlign: 'center' },
   error: { color: '#b91c1c', marginBottom: 8 }
 });

@@ -13,6 +13,7 @@ type Props = NativeStackScreenProps<GroupsStackParamList, 'GroupList'> & {
 export const GroupListScreen = ({ navigation, repository }: Props) => {
   const isFocused = useIsFocused();
   const [groups, setGroups] = useState<{ id: string; name: string }[]>([]);
+  const [seedEnabled, setSeedEnabled] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -31,6 +32,19 @@ export const GroupListScreen = ({ navigation, repository }: Props) => {
     }
   }, [isFocused, repository]);
 
+  const seedData = async () => {
+    try {
+      const group = await repository.createGroup('Demo Trip');
+      await repository.addMember(group.id, 'Alex');
+      await repository.addMember(group.id, 'Jamie');
+      const result = await repository.listGroups();
+      setGroups(result);
+      setError(null);
+    } catch {
+      setError('Unable to seed demo data.');
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text accessibilityRole="header" style={styles.title}>
@@ -39,11 +53,36 @@ export const GroupListScreen = ({ navigation, repository }: Props) => {
       {error ? <Text style={styles.error}>{error}</Text> : null}
       <Pressable
         accessibilityRole="button"
+        accessibilityLabel="Create Group"
         onPress={() => navigation.navigate('CreateGroup')}
         style={styles.primaryButton}
       >
         <Text style={styles.primaryButtonText}>Create Group</Text>
       </Pressable>
+      {__DEV__ ? (
+        <>
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel="Toggle Seed Data"
+            onPress={() => setSeedEnabled((previous) => !previous)}
+            style={styles.secondaryButton}
+          >
+            <Text style={styles.secondaryButtonText}>{seedEnabled ? 'Disable Seed Data' : 'Enable Seed Data'}</Text>
+          </Pressable>
+          {seedEnabled ? (
+            <Pressable
+              accessibilityRole="button"
+              accessibilityLabel="Seed Demo Data"
+              onPress={() => {
+                void seedData();
+              }}
+              style={styles.secondaryButton}
+            >
+              <Text style={styles.secondaryButtonText}>Seed Demo Data</Text>
+            </Pressable>
+          ) : null}
+        </>
+      ) : null}
       {groups.length === 0 ? <Text style={styles.empty}>No groups yet.</Text> : null}
       <FlatList
         data={groups}
@@ -66,7 +105,17 @@ const styles = StyleSheet.create({
   container: { flex: 1, padding: 16, backgroundColor: '#ffffff' },
   title: { fontSize: 26, fontWeight: '700', marginBottom: 12 },
   primaryButton: { backgroundColor: '#0b66c3', borderRadius: 8, padding: 12, marginBottom: 12 },
+  secondaryButton: {
+    borderWidth: 1,
+    borderColor: '#0b66c3',
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 8,
+    minHeight: 44,
+    justifyContent: 'center'
+  },
   primaryButtonText: { color: '#ffffff', fontWeight: '700', textAlign: 'center' },
+  secondaryButtonText: { color: '#0b66c3', fontWeight: '700', textAlign: 'center' },
   empty: { color: '#6b7280', marginVertical: 12 },
   groupRow: {
     borderWidth: 1,

@@ -24,31 +24,31 @@
 - [x] 4.4 Add E2E persistence flow test.
 
 ## 5. Manual Expenses (05)
-- [ ] 5.1 Add expense list and balance summary sections to group detail.
-- [ ] 5.2 Implement manual add-expense form with validations.
-- [ ] 5.3 Persist expenses + participants and recompute balances.
-- [ ] 5.4 Add component + E2E tests for manual expense flow.
+- [x] 5.1 Add expense list and balance summary sections to group detail.
+- [x] 5.2 Implement manual add-expense form with validations.
+- [x] 5.3 Persist expenses + participants and recompute balances.
+- [x] 5.4 Add component + E2E tests for manual expense flow.
 
 ## 6. Percent Split (06)
-- [ ] 6.1 Add split method selector and percent editor UI.
-- [ ] 6.2 Enforce exact 100.00% validation and submit gating.
-- [ ] 6.3 Persist participant percent data and render split metadata.
-- [ ] 6.4 Add tests for percent validation and balance outcomes.
+- [x] 6.1 Add split method selector and percent editor UI.
+- [x] 6.2 Enforce exact 100.00% validation and submit gating.
+- [x] 6.3 Persist participant percent data and render split metadata.
+- [x] 6.4 Add tests for percent validation and balance outcomes.
 
 ## 7. Receipts (07)
-- [ ] 7.1 Add image picker/camera flow and receipt persistence.
-- [ ] 7.2 Implement OCR adapter interface and mockable implementation.
-- [ ] 7.3 Implement parser heuristics and editable prefill.
-- [ ] 7.4 Add parser/unit/component/E2E tests with mocked OCR.
+- [x] 7.1 Add image picker/camera flow and receipt persistence.
+- [x] 7.2 Implement OCR adapter interface and mockable implementation.
+- [x] 7.3 Implement parser heuristics and editable prefill.
+- [x] 7.4 Add parser/unit/component/E2E tests with mocked OCR.
 
 ## 8. Settle Up (08)
-- [ ] 8.1 Add Settle Up screen route from group detail.
-- [ ] 8.2 Render computed transfers and empty/all-settled states.
-- [ ] 8.3 Add unit/component/E2E settlement tests.
+- [x] 8.1 Add Settle Up screen route from group detail.
+- [x] 8.2 Render computed transfers and empty/all-settled states.
+- [x] 8.3 Add unit/component/E2E settlement tests.
 
 ## 9. Hardening & Release (09)
-- [ ] 9.1 Add loading/error states and centralized error boundary/logging.
-- [ ] 9.2 Complete accessibility pass (labels + touch targets).
-- [ ] 9.3 Optimize long-list performance and memoization.
-- [ ] 9.4 Enforce final CI coverage thresholds and build checks.
-- [ ] 9.5 Add dev seed-data toggle and release readiness checklist.
+- [x] 9.1 Add loading/error states and centralized error boundary/logging.
+- [x] 9.2 Complete accessibility pass (labels + touch targets).
+- [x] 9.3 Optimize long-list performance and memoization.
+- [x] 9.4 Enforce final CI coverage thresholds and build checks.
+- [x] 9.5 Add dev seed-data toggle and release readiness checklist.
