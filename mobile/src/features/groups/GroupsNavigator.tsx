@@ -1,10 +1,12 @@
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import type { Repository } from '../../persistence';
+import { AddExpenseScreen } from './AddExpenseScreen';
 import { AddMemberScreen } from './AddMemberScreen';
 import { CreateGroupScreen } from './CreateGroupScreen';
 import { GroupDetailScreen } from './GroupDetailScreen';
 import { GroupListScreen } from './GroupListScreen';
+import { SettleUpScreen } from './SettleUpScreen';
 import type { GroupsStackParamList } from './types';
 
 const Stack = createNativeStackNavigator<GroupsStackParamList>();
@@ -26,6 +28,12 @@ export const GroupsNavigator = ({ repository }: Props) => (
     </Stack.Screen>
     <Stack.Screen name="AddMember" options={{ title: 'Add Member' }}>
       {(screenProps) => <AddMemberScreen {...screenProps} repository={repository} />}
+    </Stack.Screen>
+    <Stack.Screen name="AddExpense" options={{ title: 'Add Expense' }}>
+      {(screenProps) => <AddExpenseScreen {...screenProps} repository={repository} />}
+    </Stack.Screen>
+    <Stack.Screen name="SettleUp" options={{ title: 'Settle Up' }}>
+      {(screenProps) => <SettleUpScreen {...screenProps} repository={repository} />}
     </Stack.Screen>
   </Stack.Navigator>
 );

@@ -9,4 +9,12 @@ export type GroupsStackParamList = {
     groupId: string;
     groupName: string;
   };
+  AddExpense: {
+    groupId: string;
+    groupName: string;
+  };
+  SettleUp: {
+    groupId: string;
+    groupName: string;
+  };
 };
